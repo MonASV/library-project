@@ -8,10 +8,13 @@
         Author: {{this.author}} <br />
         Rating: {{this.rating}} <br />
         <a href="/books/{{this.id}}">More details</a>
+        <a href="/books/{{this._id}}/edit">Edit</a>
 
+        <form action="/books/{{this.id}}/delete" method="POST"><button>Delete</button></form>
     </p>
 
 
 </section>
 
+<hr />
 {{/each}}

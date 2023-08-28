@@ -55,6 +55,37 @@ router.post("/books/create", (req, res, next) => {
 })
 
 
+router.get('/books/:bookId/edit', (req, res, next) => {
+    const { bookId } = req.params;
+   
+    Book.findById(bookId)
+      .then(bookToEdit => {
+       res.render('books/book-edit', { book: bookToEdit})
+      })
+      .catch(error => next(error));
+  });
+
+
+
+  router.post('/books/:bookId/edit', (req, res, next) => {
+    const { bookId } = req.params;
+    const { title, description, author, rating } = req.body;
+   
+    Book.findByIdAndUpdate(bookId, { title, description, author, rating }, { new: true })
+      .then(updatedBook => res.redirect(`/books/${updatedBook.id}`))
+      .catch(error => next(error));
+  });
+
+
+
+  router.post('/books/:bookId/delete', (req, res, next) => {
+    const { bookId } = req.params;
+   
+    Book.findByIdAndDelete(bookId)
+      .then(() => res.redirect('/books'))
+      .catch(error => next(error));
+  });
+
 
 router.get("/books/:bookId", (req, res, next) => {
     
