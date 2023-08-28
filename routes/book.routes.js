@@ -24,6 +24,37 @@ router.get("/books", (req, res, next) => {
   //res.render("index");
 });
 
+// display from
+
+router.get("/books/create", (req, res, next) => {
+
+    res.render("books/book-create")
+
+})
+
+//proccess from
+
+router.post("/books/create", (req, res, next) => {
+
+    const newBook = {
+        title: req.body.title,
+        description: req.body.description,
+        author: req.body.author,
+        rating: req.body.rating
+
+    }
+    Book.create(newBook)
+    .then(() => {
+        console.log(newBook)
+        res.redirect("/books")
+    })
+    .catch(e => {
+        console.log("error creating new book", e)
+        next(e)
+    })
+})
+
+
 
 router.get("/books/:bookId", (req, res, next) => {
     
@@ -44,6 +75,7 @@ router.get("/books/:bookId", (req, res, next) => {
     })
     
 })
+
 
 
 
