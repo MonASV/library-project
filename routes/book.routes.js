@@ -23,12 +23,10 @@ router.get("/books", (req, res, next) => {
             next(e)
         })
 
-    //res.render("index");
 });
 
 // display from
 
-// CREATE: display form
 router.get("/books/create", (req, res, next) => {
     Author.find()
         .then( authorsFromDB => {
@@ -66,15 +64,23 @@ router.post("/books/create", (req, res, next) => {
 })
 
 
-router.get('/books/:bookId/edit', (req, res, next) => {
+router.get('/books/:bookId/edit', async (req, res, next) => {
     const { bookId } = req.params;
 
-    Book.findById(bookId)
-        .populate("author")
-        .then(bookToEdit => {
-            res.render('books/book-edit', { book: bookToEdit })
-        })
-        .catch(error => next(error));
+    try {
+        const bookDetails = await Book.findById(bookId)
+        const authors = await Author.find()
+        const data = {
+            book: bookDetails,
+            authors: authors
+        }
+
+        res.render('books/book-edit', data)
+    }
+    catch(e){
+
+    }
+
 });
 
 
