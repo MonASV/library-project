@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{appTitle}}</title>
-      <link rel="stylesheet" href="/stylesheets/style.css" />
-   </head>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>{{appTitle}}</title>
+   <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-   <body>
+<body>
 
-      <nav>
-         <a href="/">Home</a>
-         
-         <a href="/books">Books</a>
+   <nav>
+      <a href="/">Home</a>
 
-         <a href="/books/create">Create a book</a>
-         
-         <a href="/authors">Authors</a>
+      <a href="/books">Books</a>
 
-         <a href="/signup">Sign Up</a>
+      <a href="/books/create">Create a book</a>
 
-         <a href="/login">Login</a>
-      </nav>
+      <a href="/authors">Authors</a>
 
-      {{{body}}}
+      <a href="/signup">Sign Up</a>
 
-      <script src="/js/script.js"></script>
-   </body>
+      <a href="/login">Login</a>
+
+      <a href="/user-profile">Profile</a>
+
+      <form id="logout-form" action="/logout" method="POST">
+         <button>Logout</button>
+      </form>
+   </nav>
+
+   {{{body}}}
+
+   <script src="/js/script.js"></script>
+</body>
 
 </html>
